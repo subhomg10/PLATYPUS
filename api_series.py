@@ -23,7 +23,7 @@ headers = {
 }
 
 def fetch_series(baseUrl, endpoint, page, headers, seriesSet):
-    for attempt in range(3):
+    for attempt in range(5):
         try:
             r = requests.get(
                 baseUrl + endpoint + f"{page}",
@@ -36,7 +36,7 @@ def fetch_series(baseUrl, endpoint, page, headers, seriesSet):
 
         except requests.exceptions.RequestException as e:
             print(f"Page {page} failed (attempt {attempt+1}): {e}")
-            time.sleep(2)
+            time.sleep(3)
 
     print(f"Skipping page {page}")
     failedPages.append(page)

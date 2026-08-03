@@ -1,213 +1,212 @@
 import discord
-import database as db
 import os
 from dotenv import load_dotenv
 load_dotenv()
 
-token = os.getenv('BOT_TOKEN')
 color = int(os.getenv('COLOR_CODE'), 16)
-image = os.getenv('IMAGE_URL')
+thumbnail = os.getenv('PLATYPUS_THUMBNAIL')
+image = os.getenv('PLATYPUS_IMAGE')
 
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-def embed_top_rated_movies(moviesArray, pageNo, totalPages, user, count):
+def embed_top_rated_movies(moviesArray, pageNo, totalPages, user, count, serial):
     embed = discord.Embed(
         title = f'⭐  Top {count} Rated Movies',
         description = "Here are the top-rated Movies available.",
         color = color
     )
     for movie in moviesArray:
-        id = movie['id']
         title = movie['title']
         rating = movie['rating']
-
+    
         embed.add_field(
-            name = f'{id}. {title}',
-            value = f'**Rating:  {rating}**',
+            name = f'{serial}. {title}',
+            value = f'Rating:  {rating}',
             inline = False
         )
+        serial +=  1
 
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed
 
-def embed_top_rated_series(seriesArray, pageNo, totalPages, user, count):
+def embed_top_rated_series(seriesArray, pageNo, totalPages, user, count, serial):
     embed = discord.Embed(
         title = f'⭐  Top {count} Rated TV Series',
         description = "Here are the top-rated TV Series available.",
         color = color
     )
     for series in seriesArray:
-        id = series['id']
         title = series['title']
         rating = series['rating']
 
         embed.add_field(
-            name = f'{id}. {title}',
-            value = f'**Rating:  {rating}**',
+            name = f'{serial}. {title}',
+            value = f'Rating:  {rating}',
             inline = False
         )
+        serial += 1
 
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed
 
-def embed_popular_movies(moviesArray, pageNo, totalPages, user, count):
+def embed_popular_movies(moviesArray, pageNo, totalPages, user, count, serial):
     embed = discord.Embed(
         title = f'⭐  Top {count} Popular Movies',
         description = "Here are the most popular Movies available.",
         color = color
     )
     for movie in moviesArray:
-        id = movie['id']
         title = movie['title']
         rating = movie['rating']
 
         embed.add_field(
-            name = f'{id}. {title}',
-            value = f'**Rating:  {rating}**',
+            name = f'{serial}. {title}',
+            value = f'Rating:  {rating}',
             inline = False
         )
+        serial += 1
 
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed
 
-def embed_popular_series(seriesArray, pageNo, totalPages, user, count):
+def embed_popular_series(seriesArray, pageNo, totalPages, user, count, serial):
     embed = discord.Embed(
         title = f'⭐  Top {count} Popular Movies',
         description = "Here are the most popular TV Series available.",
         color = color
     )
     for series in seriesArray:
-        id = series['id']
         title = series['title']
         rating = series['rating']
 
         embed.add_field(
-            name = f'{id}. {title}',
-            value = f'**Rating:  {rating}**',
+            name = f'{serial}. {title}',
+            value = f'Rating:  {rating}',
             inline = False
         )
+        serial += 1
 
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed
 
-def embed_movies_by_language(moviesArray, pageNo, totalPages, user, count, language):
+def embed_movies_by_language(moviesArray, pageNo, totalPages, user, count, serial, language):
     embed = discord.Embed(
         title = f'⭐  Top {count} {language.upper()} Movies',
         description = f'Here are the top-rated **{language.upper()}** Movies available.',
         color = color
     )
     for movie in moviesArray:
-        id = movie['id']
         title = movie['title']
         rating = movie['rating']
 
         embed.add_field(
-            name = f'{id}. {title}',
-            value = f'**Rating:  {rating}**',
+            name = f'{serial}. {title}',
+            value = f'Rating:  {rating}',
             inline = False
         )
+        serial += 1
 
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed
 
-def embed_series_by_language(seriesArray, pageNo, totalPages, user, count, language):
+def embed_series_by_language(seriesArray, pageNo, totalPages, user, count, serial, language):
     embed = discord.Embed(
         title = f'⭐  Top {count} {language.upper()} TV Series',
         description = f'Here are the top-rated **{language.upper()}** TV Series available.',
         color = color
     )
     for series in seriesArray:
-        id = series['id']
         title = series['title']
         rating = series['rating']
 
         embed.add_field(
-            name = f'{id}. {title}',
-            value = f'**Rating:  {rating}**',
+            name = f'{serial}. {title}',
+            value = f'Rating:  {rating}',
             inline = False
         )
+        serial += 1
 
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed
 
-def embed_movies_by_genre(moviesArray, pageNo, totalPages, user, count, genre):
+def embed_movies_by_genre(moviesArray, pageNo, totalPages, user, count, serial, genre):
     embed = discord.Embed(
         title = f'⭐  Top {count} {genre.upper()} Movies',
         description = f'Here are the top-rated **{genre.upper()}** Movies available.',
         color = color
     )
     for movie in moviesArray:
-        id = movie['id']
         title = movie['title']
         rating = movie['rating']
 
         embed.add_field(
-            name = f'{id}. {title}',
-            value = f'**Rating:  {rating}**',
+            name = f'{serial}. {title}',
+            value = f'Rating:  {rating}',
             inline = False
         )
+        serial += 1
 
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed
 
-def embed_series_by_genre(seriesArray, pageNo, totalPages, user, count, genre):
+def embed_series_by_genre(seriesArray, pageNo, totalPages, user, count, serial, genre):
     embed = discord.Embed(
         title = f'⭐  Top {count} {genre.upper()} Movies',
         description = f'Here are the top-rated **{genre.upper()}** TV Series available.',
         color = color
     )
     for series in seriesArray:
-        id = series['id']
         title = series['title']
         rating = series['rating']
 
         embed.add_field(
-            name = f'{id}. {title}',
-            value = f'**Rating:  {rating}**',
+            name = f'{serial}. {title}',
+            value = f'Rating:  {rating}',
             inline = False
         )
+        serial += 1
 
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed
 
-def embed_movies_by_title(moviesArray, pageNo, totalPages, user, title):
+def embed_movies_by_title(moviesArray, pageNo, totalPages, user, serial, title):
     embed = discord.Embed(
         title = f'Showing Results for {title.upper()}',
         description = f'Here are the results found for **{title.upper()}**.',
         color = color
     )
     for movie in moviesArray:
-        id = movie['id']
         title = movie['title']
         rating = movie['rating']
 
         embed.add_field(
-            name = f'{id}. {title}',
-            value = f'**Rating:  {rating}**',
+            name = f'{serial}. {title}',
+            value = f'Rating:  {rating}',
             inline = False
         )
+        serial += 1
 
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed
 
-def embed_series_by_title(seriesArray, pageNo, totalPages, user, title):
+def embed_series_by_title(seriesArray, pageNo, totalPages, user, serial, title):
     embed = discord.Embed(
         title = f'Showing Results for {title.upper()}',
         description = f'Here are the results found for **{title.upper()}**.',
         color = color
     )
     for series in seriesArray:
-        id = series['id']
         title = series['title']
         rating = series['rating']
 
         embed.add_field(
-            name = f'{id}. {title}',
-            value = f'**Rating:  {rating}**',
+            name = f'{serial}. {title}',
+            value = f'Rating:  {rating}',
             inline = False
         )
+        serial += 1
 
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed
@@ -229,10 +228,13 @@ def embed_random_movie(movie, user):
     )
     embed.add_field(
         name = "Additional Information:",
-        value = f'TMDB Id: {tmdbId}\nGenre: {genre}\nLanguage: {language}\nReleased On: {releasedOn}\nRating: {rating}',
+        value = f'**TMDB Id:** {tmdbId}\n**Genre:** {genre}\n**Language:** {language}\n**Released On:** {releasedOn}\n**Rating**: {rating}',
         inline = False
     )
-    embed.set_thumbnail(url = poster)
+    poster_url = f'https://image.tmdb.org/t/p/w500{poster}'
+    embed.set_thumbnail(url = thumbnail)
+    if poster:
+        embed.set_image(url = poster_url)
     embed.set_footer(text = f'Page 1/1 • Requested by {user.name}')
     return embed
 
@@ -253,10 +255,13 @@ def embed_random_series(series, user):
     )
     embed.add_field(
         name = "Additional Information:",
-        value = f'TMDB Id: {tmdbId}\nGenre: {genre}\nLanguage: {language}\nFirst Aired On: {releasedOn}\nRating: {rating}',
+        value = f'**TMDB Id:** {tmdbId}\n**Genre:** {genre}\n**Language:** {language}\n**First Aired On: {releasedOn}\n**Rating:** {rating}',
         inline = False
     )
-    embed.set_thumbnail(url = poster)
+    embed.set_thumbnail(url = thumbnail)
+    poster_url = f'https://image.tmdb.org/t/p/w500{poster}'
+    if poster:
+        embed.set_image(url = poster_url)
     embed.set_footer(text = f'Page 1/1 • Requested by {user.name}')
     return embed
 
@@ -266,10 +271,9 @@ def embed_help():
         description = "Explore movies, series, and utility commands using the options below.\nUse `/<command-name>`",
         color = color
     )
-    embed.set_image(url = image)
     embed.add_field(
         name = "**🎥  MOVIES**", 
-        value = "• /search-movie\n• /random-movie\n• /top-rated-movies\n• /popular-movies\n• /movie-genre\n• /movie-language", 
+        value = "• /search-movies\n• /random-movie\n• /top-rated-movies\n• /popular-movies\n• /movie-genre\n• /movie-language", 
         inline = True
     )
     embed.add_field(
@@ -283,6 +287,7 @@ def embed_help():
         inline = True
     )
     embed.set_footer(text = "🍿  Happy watching! Hope you find something amazing to watch.")
+    embed.set_thumbnail(url = thumbnail)
     embed.set_image(url = image)
     return embed
 
@@ -294,14 +299,16 @@ def embed_about():
     )
     embed.add_field(
         name = "✨  Features",
-        value = ("• 🔎  Search movies and series by name\n• 🎲  Get random recommendations\n• ⭐  Explore top-rated and popular content\n• 🎭  Filter recommendations by genre and language"),
+        value = ("• Search movies and series by name\n• Get random recommendations\n• Explore top-rated and popular content\n• Filter recommendations by genre and language"),
         inline = False
     )
     embed.add_field(
         name = "⚙️  Powered By",
-        value=("• 🐍  Python\n• 💬  Discord.py\n• 🗄️  PostgreSQL\n• 🌐  TMDB API"),
+        value=("• Python\n• Discord.py\n• PostgreSQL\n• TMDB API"),
         inline = False
     )
+    embed.set_thumbnail(url = thumbnail)
+    embed.set_image(url = image)
     embed.set_footer(text = "🍿  Use /help to explore available commands.")
     return embed
 
@@ -313,7 +320,7 @@ def embed_stats(latency, totalMovies, totalSeries):
     )
     embed.add_field(
         name = "🤖  **Bot Information**",
-        value = f'• Bot Name: PLATYPUS\n• Status: 🟢  Online\n• Latency: {latency} ms\n• Discord.py Version: 2.5.2)',
+        value = f'• Bot Name: PLATYPUS\n• Status: 🟢  Online\n• Latency: {latency} ms\n• Discord.py Version: 2.5.2',
         inline = False
     )
     embed.add_field(
@@ -326,6 +333,8 @@ def embed_stats(latency, totalMovies, totalSeries):
         value = "• Language: Python\n• API: TMDB API\n• Hosting: Local",
         inline = False
     )
+    embed.set_thumbnail(url = thumbnail)
+    embed.set_image(url = image)
     embed.set_footer(text = "🍿  PLATYPUS • Your Personal Movie & Series Assistant")
     return embed
 
@@ -338,7 +347,7 @@ def embed_ping(latency):
     embed.set_footer(text = "🍿  PLATYPUS • Movie & Series Assistant")
     return embed
 
-def embed_genres(genreArray, pageNo, totalPages, user, count):
+def embed_genres(genreArray, pageNo, totalPages, user, count, serial):
     embed = discord.Embed(
         title = "🎭  AVAILABLE GENRES",
         description = f'Explore movies and series by selecting your preferred genre.\nTotal Genres: {count}',
@@ -346,14 +355,15 @@ def embed_genres(genreArray, pageNo, totalPages, user, count):
     )
     for genre in genreArray:
         embed.add_field(
-            name = f'• {genre}', 
+            name = f'{serial}. {genre}', 
             value = "\u200b",
             inline = False
         )
+        serial += 1
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed
 
-def embed_languages(languageArray, pageNo, totalPages, user, count):
+def embed_languages(languageArray, pageNo, totalPages, user, count, serial):
     embed = discord.Embed(
         title = "🎭  AVAILABLE LANGUAGES",
         description = f'Explore movies and series by selecting your preferred language.\nTotal Languages: {count}',
@@ -361,9 +371,10 @@ def embed_languages(languageArray, pageNo, totalPages, user, count):
     )
     for language in languageArray:
         embed.add_field(
-            name = f'• {language}',
+            name = f'{serial}. {language}',
             value = "\u200b",
             inline = False
         )
+        serial += 1
     embed.set_footer(text = f'Page {pageNo}/{totalPages} • Requested by {user.name}')
     return embed

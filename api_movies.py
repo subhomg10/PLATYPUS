@@ -25,7 +25,7 @@ headers = {
 }
 
 def fetch_movies(baseUrl, endpoint, page, headers, moviesSet):
-    for attempt in range(3):
+    for attempt in range(5):
         try:
             r = requests.get(
                 baseUrl + endpoint + f"{page}",
@@ -38,7 +38,7 @@ def fetch_movies(baseUrl, endpoint, page, headers, moviesSet):
 
         except requests.exceptions.RequestException as e:
             print(f"Page {page} failed (attempt {attempt+1}): {e}")
-            time.sleep(2)
+            time.sleep(3)
 
     print(f"Skipping page {page}")
     failedPages.append(page)
@@ -86,7 +86,7 @@ def get_genre(genreIds):
 def get_language(langCode):
     if langCode in language:
         return language[langCode]
-    return "Language Unavailable"
+    return "Unavailable"
 
 def top_rated_movies():
     for i in range(1, 150):

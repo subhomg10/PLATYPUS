@@ -10,23 +10,6 @@ class Buttons(discord.ui.View):
         self.user = user
         self.embedArgs = embedArgs
 
-    @discord.ui.button(label = ">", style = discord.ButtonStyle.primary, disabled = False)
-    async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
-        if interaction.user != self.user:
-            await interaction.response.send_message(
-                "This pagination belongs to another user.",
-                ephemeral=True
-            )
-            return
-        embed = self.embedFxn(self.page2, 2, 2, self.user, **self.embedArgs)
-
-        for child in self.children:
-            if child.label == ">":
-                child.disabled = True
-            else:
-                child.disabled = False
-
-        await interaction.response.edit_message(embed = embed, view = self)
 
     @discord.ui.button(label = "<", style = discord.ButtonStyle.primary, disabled = True)
     async def previous(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -36,8 +19,10 @@ class Buttons(discord.ui.View):
                 ephemeral=True
             )
             return
-        embed = embed = self.embedFxn(self.page1, 1, 2, self.user, **self.embedArgs)
-    
+        args = self.embedArgs.copy()
+        args['serial'] = 1
+        embed = embed = self.embedFxn(self.page1, 1, 2, self.user, **args)
+
         for child in self.children:
             if child.label == ">":
                 child.disabled = False
@@ -46,6 +31,27 @@ class Buttons(discord.ui.View):
 
         await interaction.response.edit_message(embed = embed, view = self)
 
+    @discord.ui.button(label = ">", style = discord.ButtonStyle.primary, disabled = False)
+    async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
+        if interaction.user != self.user:
+            await interaction.response.send_message(
+                "This pagination belongs to another user.",
+                ephemeral=True
+            )
+            return
+        args = self.embedArgs.copy()
+        args['serial'] = 26
+        embed = embed = self.embedFxn(self.page1, 1, 2, self.user, **args)
+        embed = self.embedFxn(self.page2, 2, 2, self.user, **self.embedArgs)
+
+        for child in self.children:
+            if child.label == ">":
+                child.disabled = True
+            else:
+                child.disabled = False
+
+        await interaction.response.edit_message(embed = embed, view = self)
+        
 class Ping(discord.ui.View):
     def __init__(self, latency):
         super().__init__()

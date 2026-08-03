@@ -10,11 +10,6 @@ user = os.getenv('DB_USER')
 password = os.getenv('DB_PASSWORD')
 port = int(os.getenv('DB_PORT'))
 
-print(host)
-print(database)
-print(user)
-print(port)
-
 def get_connection():
     return psycopg2.connect(
             host = host,
@@ -41,15 +36,14 @@ def insert_query_movies(moviesList):
             cur.execute(query, values)
 
 def search_series(title):
-    query = '''SELECT title, description, genre, language, released_on, poster
-    FROM SERIES WHERE title ILIKE %s ;'''
+    query = 'SELECT title, rating FROM SERIES WHERE title ILIKE %s ;'
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (f'%{title}%',))
             return cur.fetchall()
 
 def get_random_series():
-    query = '''SELECT title, description, genre, language, released_on, poster
+    query = '''SELECT tmdb_id, title, description, genre, language, released_on, poster
     FROM SERIES ORDER BY RANDOM() LIMIT 1 ;'''
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
@@ -57,43 +51,44 @@ def get_random_series():
             return cur.fetchone()
 
 def get_top_rated_series(count):
-    query = 'SELECT id, title, rating FROM SERIES ORDER BY RATING DESC LIMIT %s ;'
+    query = 'SELECT title, rating FROM SERIES ORDER BY RATING DESC LIMIT %s ;'
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (count,))
             return cur.fetchall()
 
 def get_popular_series(count):
-    query = 'SELECT id, title, rating FROM SERIES ORDER BY POPULARITY DESC LIMIT %s ;'
+    query = 'SELECT title, rating FROM SERIES ORDER BY POPULARITY DESC LIMIT %s ;'
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (count,))
             return cur.fetchall()
 
 def get_series_by_genre(genre, count):
-    query = 'SELECT id, title, rating FROM SERIES WHERE genre ILIKE %s ORDER BY RATING DESC LIMIT %s ;'
+    query = 'SELECT title, rating FROM SERIES WHERE genre ILIKE %s ORDER BY RATING DESC LIMIT %s ;'
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (f'%{genre}%', count))
-            return cur.fetchall()
+            rows = cur.fetchall()
+            print(rows)
+            return rows
 
 def get_series_by_language(language, count):
-    query = 'SELECT id, title, rating FROM SERIES WHERE language ILIKE %s ORDER BY RATING DESC LIMIT %s ;'
+    query = 'SELECT title, rating FROM SERIES WHERE language ILIKE %s ORDER BY RATING DESC LIMIT %s ;'
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (f'%{language}%', count))
             return cur.fetchall()
 
 def search_movie(title):
-    query = '''SELECT title, description, genre, language, released_on, poster
-    FROM MOVIES WHERE title ILIKE %s ;'''
+    query = 'SELECT title, rating FROM MOVIES WHERE title ILIKE %s ;'
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (f'%{title}%',))
             return cur.fetchall()
 
 def get_random_movie():
-    query = '''SELECT title, description, genre, language, released_on, poster
+    query = '''SELECT tmdb_id, title, description, genre, language, released_on, rating, poster
     FROM MOVIES ORDER BY RANDOM() LIMIT 1 ;'''
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
@@ -101,28 +96,28 @@ def get_random_movie():
             return cur.fetchone()
 
 def get_top_rated_movies(count):
-    query = 'SELECT id, title, rating FROM MOVIES ORDER BY RATING DESC LIMIT %s ;'
+    query = 'SELECT title, rating FROM MOVIES ORDER BY RATING DESC LIMIT %s ;'
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (count,))
             return cur.fetchall()
 
 def get_popular_movies(count):
-    query = 'SELECT id, title, rating FROM MOVIES ORDER BY POPULARITY DESC LIMIT %s ;'
+    query = 'SELECT title, rating FROM MOVIES ORDER BY POPULARITY DESC LIMIT %s ;'
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (count,))
             return cur.fetchall()
 
 def get_movies_by_genre(genre, count):
-    query = 'SELECT id, title, rating FROM MOVIES WHERE genre ILIKE %s ORDER BY RATING DESC LIMIT %s ;'
+    query = 'SELECT title, rating FROM MOVIES WHERE genre ILIKE %s ORDER BY RATING DESC LIMIT %s ;'
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (f'%{genre}%', count))
             return cur.fetchall()
 
 def get_movies_by_language(language, count):
-    query = 'SELECT id, title, rating FROM MOVIES WHERE language ILIKE %s ORDER BY RATING DESC LIMIT %s ;'
+    query = 'SELECT title, rating FROM MOVIES WHERE language ILIKE %s ORDER BY RATING DESC LIMIT %s ;'
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (f'%{language}%', count))
@@ -133,25 +128,25 @@ def get_total_movies():
     with get_connection() as con:
         with con.cursor() as cur:
             cur.execute(query)
-            return cur.fetchall()
+            return cur.fetchall()[0][0]
 
 def get_total_series():
     query = 'SELECT COUNT(*) FROM SERIES ;'
     with get_connection() as con:
         with con.cursor() as cur:
             cur.execute(query)
-            return cur.fetchall()
+            return cur.fetchall()[0][0]
 
-def get_all_genres_movies():
-    query = 'SELECT DISTINCT unnest(genre) AS genre FROM MOVIES ORDER BY genre ;'
+def get_all_genre_movies():
+    query = 'SELECT DISTINCT genre FROM MOVIES ORDER BY genre ;'
     with get_connection() as con:
         with con.cursor() as cur:
             cur.execute(query)
             genres = [row[0] for row in cur.fetchall()]
             return genres
 
-def get_all_genres_series():
-    query = 'SELECT DISTINCT unnest(genre) AS genre FROM SERIES ORDER BY genre ;'
+def get_all_genre_series():
+    query = 'SELECT DISTINCT genre FROM SERIES ORDER BY genre ;'
     with get_connection() as con:
         with con.cursor() as cur:
             cur.execute(query)
@@ -159,7 +154,7 @@ def get_all_genres_series():
             return genres
 
 def get_all_language_movies():
-    query = 'SELECT DISTINCT unnest(language) AS language FROM MOVIES ORDER BY language ;'
+    query = 'SELECT DISTINCT language FROM MOVIES ORDER BY language ;'
     with get_connection() as con:
         with con.cursor() as cur:
             cur.execute(query)
@@ -167,7 +162,7 @@ def get_all_language_movies():
             return language
 
 def get_all_language_series():
-    query = 'SELECT DISTINCT unnest(language) AS language FROM SERIES ORDER BY language ;'
+    query = 'SELECT DISTINCT language FROM SERIES ORDER BY language ;'
     with get_connection() as con:
         with con.cursor() as cur:
             cur.execute(query)
