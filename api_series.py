@@ -49,14 +49,14 @@ def clean_series(response, seriesSet):
         seriesList = {
             'tmdb_id' : series['id'],
             'title' : series['name'],
-            'description' : series.get('overview'),
+            'description' : series.get('overview') or "No description available",
             'genre' : get_genre(series.get('genre_ids', [])),
             'language' : get_language(series.get('original_language')),
-            'released_on' : series.get('first_air_date'),
-            'rating' : series.get('vote_average'),
-            'popularity' : series.get('popularity'),
+            'released_on' : series.get('first_air_date') or None,
+            'rating' : series.get('vote_average') or None,
+            'popularity' : series.get('popularity') or None,
             'adult' : series.get('adult', False),           
-            'poster' : series.get('poster_path')
+            'poster' : series.get('poster_path') or None
         }
         get_series(seriesList, seriesSet)
     return seriesSet

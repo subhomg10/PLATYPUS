@@ -54,21 +54,15 @@ def clean_movies(response, moviesSet):
         moviesList = {
             'tmdb_id' : movies['id'],
             'title' : movies['title'],
-            'description' : movies.get('overview'),
+            'description' : movies.get('overview') or "No description available",
             'genre' : get_genre(movies.get('genre_ids', [])),
             'language' : get_language(movies.get('original_language')),
-            'released_on' : movies.get('release_date'),
-            'rating' : movies.get('vote_average'),
-            'popularity' : movies.get('popularity'),
-            'adult' : movies.get('adult', False),           
-            'poster' : movies.get('poster_path')
+            'released_on' : movies.get('release_date') or None,
+            'rating' : movies.get('vote_average') or None,
+            'popularity' : movies.get('popularity') or None,
+            'adult' : movies.get('adult', False),  
+            'poster' : movies.get('poster_path') or None
         }
-        print(movies["genre_ids"])
-        print(get_genre(movies["genre_ids"]))
-
-        print(movies["original_language"])
-        print(get_language(movies["original_language"]))
-        
         get_movies(moviesList, moviesSet)
     return moviesSet
 
