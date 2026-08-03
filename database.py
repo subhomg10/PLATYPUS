@@ -8,7 +8,7 @@ host = os.getenv('HOST')
 database = os.getenv('DATABASE')
 user = os.getenv('USER')
 password = os.getenv('PASSWORD')
-port = int(os.getenv('PORT'), 16)
+port = int(os.getenv('PORT'))
 
 def get_connection():
     return psycopg2.connect(
