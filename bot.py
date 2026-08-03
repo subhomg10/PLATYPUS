@@ -45,7 +45,7 @@ async def about(interaction: discord.Interaction):
 
 @bot.tree.command(name = "stats", description = "View bot and database statistics")
 async def stats(interaction: discord.Interaction):
-    latency = bot.latency*1000
+    latency = round(bot.latency*1000,2)
     totalMovies = db.get_total_movies()
     totalSeries = db.get_total_series()
     embed = dce.embed_stats(latency, totalMovies, totalSeries)

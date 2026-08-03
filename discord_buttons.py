@@ -11,7 +11,7 @@ class Buttons(discord.ui.View):
         self.embedArgs = embedArgs
 
     @discord.ui.button(label = ">", style = discord.ButtonStyle.primary, disabled = False)
-    async def next(self, interaction: discord.Interaction):
+    async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
         if interaction.user != self.user:
             await interaction.response.send_message(
                 "This pagination belongs to another user.",
@@ -29,7 +29,7 @@ class Buttons(discord.ui.View):
         await interaction.response.edit_message(embed = embed, view = self)
 
     @discord.ui.button(label = "<", style = discord.ButtonStyle.primary, disabled = True)
-    async def previous(self, interaction: discord.Interaction):
+    async def previous(self, interaction: discord.Interaction, button: discord.ui.Button):
         if interaction.user != self.user:
             await interaction.response.send_message(
                 "This pagination belongs to another user.",
@@ -51,7 +51,7 @@ class Ping(discord.ui.View):
         super().__init__()
         self.latency = latency
     @discord.ui.button(label = "Test Again", style = discord.ButtonStyle.primary)
-    async def testAgain(self, interaction: discord.Interaction):
+    async def testAgain(self, interaction: discord.Interaction, button: discord.ui.Button):
         embed = dce.embed_ping(self.latency)
         await interaction.response.edit_message(embed = embed, view = self)
         
