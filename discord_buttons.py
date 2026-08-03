@@ -24,7 +24,7 @@ class Buttons(discord.ui.View):
         embed = embed = self.embedFxn(self.page1, 1, 2, self.user, **args)
 
         for child in self.children:
-            if child.label == ">":
+            if child.label == "▶":
                 child.disabled = False
             else:
                 child.disabled = True
@@ -45,10 +45,10 @@ class Buttons(discord.ui.View):
         embed = self.embedFxn(self.page2, 2, 2, self.user, **self.embedArgs)
 
         for child in self.children:
-            if child.label == ">":
-                child.disabled = True
-            else:
+            if child.label == "◀":
                 child.disabled = False
+            else:
+                child.disabled = True
 
         await interaction.response.edit_message(embed = embed, view = self)
         

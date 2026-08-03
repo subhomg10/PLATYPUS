@@ -255,7 +255,7 @@ def embed_random_series(series, user):
     )
     embed.add_field(
         name = "Additional Information:",
-        value = f'**TMDB Id:** {tmdbId}\n**Genre:** {genre}\n**Language:** {language}\n**First Aired On: {releasedOn}\n**Rating:** {rating}',
+        value = f'**TMDB Id:** {tmdbId}\n**Genre:** {genre}\n**Language:** {language}\n**First Aired On:** {releasedOn}\n**Rating:** {rating}',
         inline = False
     )
     embed.set_thumbnail(url = thumbnail)
