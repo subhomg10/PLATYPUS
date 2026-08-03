@@ -59,8 +59,13 @@ def embed_popular_movies(moviesArray, pageNo, totalPages, user, count, serial):
     )
     for movie in moviesArray:
         title = movie['title']
-        rating = round(movie['rating'], 1)
+        rating = movie['rating']
 
+        if rating is None:
+            rating = "N/A"
+        else:
+            rating = round(rating, 1)
+            
         embed.add_field(
             name = f'{serial}. {title}',
             value = f'Rating:  {rating}',
@@ -79,8 +84,13 @@ def embed_popular_series(seriesArray, pageNo, totalPages, user, count, serial):
     )
     for series in seriesArray:
         title = series['title']
-        rating = round(series['rating'], 1)
+        rating = series['rating']
 
+        if rating is None:
+            rating = "N/A"
+        else:
+            rating = round(rating, 1)
+            
         embed.add_field(
             name = f'{serial}. {title}',
             value = f'Rating:  {rating}',
@@ -99,8 +109,13 @@ def embed_movies_by_language(moviesArray, pageNo, totalPages, user, count, seria
     )
     for movie in moviesArray:
         title = movie['title']
-        rating = round(movie['rating'], 1)
+        rating = movie['rating']
 
+        if rating is None:
+            rating = "N/A"
+        else:
+            rating = round(rating, 1)
+            
         embed.add_field(
             name = f'{serial}. {title}',
             value = f'Rating:  {rating}',
@@ -119,7 +134,12 @@ def embed_series_by_language(seriesArray, pageNo, totalPages, user, count, seria
     )
     for series in seriesArray:
         title = series['title']
-        rating = round(series['rating'], 1)
+        rating = series['rating']
+
+        if rating is None:
+            rating = "N/A"
+        else:
+            rating = round(rating, 1)
 
         embed.add_field(
             name = f'{serial}. {title}',
@@ -139,8 +159,13 @@ def embed_movies_by_genre(moviesArray, pageNo, totalPages, user, count, serial, 
     )
     for movie in moviesArray:
         title = movie['title']
-        rating = round(movie['rating'], 1)
+        rating = movie['rating']
 
+        if rating is None:
+            rating = "N/A"
+        else:
+            rating = round(rating, 1)
+            
         embed.add_field(
             name = f'{serial}. {title}',
             value = f'Rating:  {rating}',
@@ -159,8 +184,13 @@ def embed_series_by_genre(seriesArray, pageNo, totalPages, user, count, serial, 
     )
     for series in seriesArray:
         title = series['title']
-        rating = round(series['rating'], 1)
+        rating = series['rating']
 
+        if rating is None:
+            rating = "N/A"
+        else:
+            rating = round(rating, 1)
+            
         embed.add_field(
             name = f'{serial}. {title}',
             value = f'Rating:  {rating}',
@@ -179,8 +209,13 @@ def embed_movies_by_title(moviesArray, pageNo, totalPages, user, serial, title):
     )
     for movie in moviesArray:
         title = movie['title']
-        rating = round(movie['rating'], 1)
+        rating = movie['rating']
 
+        if rating is None:
+            rating = "N/A"
+        else:
+            rating = round(rating, 1)
+            
         embed.add_field(
             name = f'{serial}. {title}',
             value = f'Rating:  {rating}',
@@ -199,8 +234,13 @@ def embed_series_by_title(seriesArray, pageNo, totalPages, user, serial, title):
     )
     for series in seriesArray:
         title = series['title']
-        rating = round(series['rating'], 1)
+        rating = series['rating']
 
+        if rating is None:
+            rating = "N/A"
+        else:
+            rating = round(rating, 1)
+            
         embed.add_field(
             name = f'{serial}. {title}',
             value = f'Rating:  {rating}',
@@ -218,9 +258,14 @@ def embed_random_movie(movie, user):
     genre = movie['genre']
     language = movie['language']
     releasedOn = movie['released_on']
-    rating = round(movie['rating'], 1)
+    rating = movie['rating']
     poster = movie['poster']
 
+    if rating is None:
+        rating = "N/A"
+    else:
+        rating = round(rating, 1)
+            
     embed = discord.Embed(
         title = f'{title.upper()}',
         description = description,
@@ -245,9 +290,14 @@ def embed_random_series(series, user):
     genre = series['genre']
     language = series['language']
     releasedOn = series['released_on']
-    rating = round(series['rating'], 1)
+    rating = series['rating']
     poster = series['poster']
 
+    if rating is None:
+        rating = "N/A"
+    else:
+        rating = round(rating, 1)
+            
     embed = discord.Embed(
         title = f'{title.upper()}',
         description = description,

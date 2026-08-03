@@ -44,7 +44,7 @@ def search_series(title):
 
 def get_random_series():
     query = '''SELECT tmdb_id, title, description, genre, language, released_on, poster, rating
-    FROM SERIES WHERE rating IS NOT NULL ORDER BY RANDOM() LIMIT 1 ;'''
+    FROM SERIES ORDER BY RANDOM() LIMIT 1 ;'''
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query)
@@ -65,7 +65,7 @@ def get_popular_series(count):
             return cur.fetchall()
 
 def get_series_by_genre(genre, count):
-    query = "SELECT title, rating FROM SERIES WHERE rating IS NOT NULL WHERE genre ILIKE %s ORDER BY RATING DESC LIMIT %s ;"
+    query = "SELECT title, rating FROM SERIES WHERE genre ILIKE %s ORDER BY RATING DESC LIMIT %s ;"
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (f'%{genre}%', count))
@@ -74,14 +74,14 @@ def get_series_by_genre(genre, count):
             return rows
 
 def get_series_by_language(language, count):
-    query = "SELECT title, rating FROM SERIES WHERE rating IS NOT NULL WHERE language ILIKE %s ORDER BY RATING DESC LIMIT %s ;"
+    query = "SELECT title, rating FROM SERIES WHERE language ILIKE %s ORDER BY RATING DESC LIMIT %s ;"
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (f'%{language}%', count))
             return cur.fetchall()
 
 def search_movie(title):
-    query = "SELECT title, rating FROM MOVIES WHERE rating IS NOT NULL WHERE title ILIKE %s ;"
+    query = "SELECT title, rating FROM MOVIES WHERE title ILIKE %s ;"
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (f'%{title}%',))
@@ -89,7 +89,7 @@ def search_movie(title):
 
 def get_random_movie():
     query = '''SELECT tmdb_id, title, description, genre, language, released_on, rating, poster
-    FROM MOVIES WHERE rating IS NOT NULL ORDER BY RANDOM() LIMIT 1 ;'''
+    FROM MOVIES ORDER BY RANDOM() LIMIT 1 ;'''
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query)
@@ -110,14 +110,14 @@ def get_popular_movies(count):
             return cur.fetchall()
 
 def get_movies_by_genre(genre, count):
-    query = "SELECT title, rating FROM MOVIES WHERE rating IS NOT NULL WHERE genre ILIKE %s ORDER BY RATING DESC LIMIT %s ;"
+    query = "SELECT title, rating FROM MOVIES WHERE genre ILIKE %s ORDER BY RATING DESC LIMIT %s ;"
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (f'%{genre}%', count))
             return cur.fetchall()
 
 def get_movies_by_language(language, count):
-    query = "SELECT title, rating FROM MOVIES WHERE rating IS NOT NULL WHERE language ILIKE %s ORDER BY RATING DESC LIMIT %s ;"
+    query = "SELECT title, rating FROM MOVIES WHERE language ILIKE %s ORDER BY RATING DESC LIMIT %s ;"
     with get_connection() as con:
         with con.cursor(cursor_factory = psycopg2.extras.DictCursor) as cur:
             cur.execute(query, (f'%{language}%', count))

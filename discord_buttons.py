@@ -41,7 +41,6 @@ class Buttons(discord.ui.View):
             return
         args = self.embedArgs.copy()
         args['serial'] = 26
-        embed = embed = self.embedFxn(self.page1, 1, 2, self.user, **args)
         embed = self.embedFxn(self.page2, 2, 2, self.user, **self.embedArgs)
 
         for child in self.children:
