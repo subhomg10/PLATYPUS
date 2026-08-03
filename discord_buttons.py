@@ -11,7 +11,7 @@ class Buttons(discord.ui.View):
         self.embedArgs = embedArgs
 
 
-    @discord.ui.button(label = "<", style = discord.ButtonStyle.primary, disabled = True)
+    @discord.ui.button(label = "◀", style = discord.ButtonStyle.primary, disabled = True)
     async def previous(self, interaction: discord.Interaction, button: discord.ui.Button):
         if interaction.user != self.user:
             await interaction.response.send_message(
@@ -31,7 +31,7 @@ class Buttons(discord.ui.View):
 
         await interaction.response.edit_message(embed = embed, view = self)
 
-    @discord.ui.button(label = ">", style = discord.ButtonStyle.primary, disabled = False)
+    @discord.ui.button(label = "▶", style = discord.ButtonStyle.primary, disabled = False)
     async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
         if interaction.user != self.user:
             await interaction.response.send_message(

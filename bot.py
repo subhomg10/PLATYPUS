@@ -141,6 +141,9 @@ async def movies_language(interaction: discord.Interaction, count: int, language
     if count > 50:
         count = 50
     movies = db.get_movies_by_language(language, count)
+    if not movies:
+        await interaction.response.send_message(f'No movies found for **{language.upper()}**.', ephemeral = True)
+        return
     if count > 25:
         page1 = movies[:25]
         page2 = movies[25:]
@@ -158,6 +161,9 @@ async def series_language(interaction: discord.Interaction, count: int, language
     if count > 50:
         count = 50
     series = db.get_series_by_language(language, count)
+    if not series:
+        await interaction.response.send_message(f'No series found for **{language.upper()}**.', ephemeral = True)
+        return
     if count > 25:
         page1 = series[:25]
         page2 = series[25:]
@@ -175,6 +181,9 @@ async def movies_genre(interaction: discord.Interaction, count: int, genre: str)
     if count > 50:
         count = 50
     movies = db.get_movies_by_genre(genre, count)
+    if not movies:
+        await interaction.response.send_message(f'No movies found for **{genre.upper()}**.', ephemeral = True)
+        return
     if count > 25:
         page1 = movies[:25]
         page2 = movies[25:]
@@ -192,6 +201,9 @@ async def series_genre(interaction: discord.Interaction, count: int, genre: str)
     if count > 50:
         count = 50
     series = db.get_series_by_genre(genre, count)
+    if not series:
+        await interaction.response.send_message(f'No series found for **{genre.upper()}**.', ephemeral = True)
+        return
     if count > 25:
         page1 = series[:25]
         page2 = series[25:]
@@ -207,6 +219,9 @@ async def series_genre(interaction: discord.Interaction, count: int, genre: str)
 async def search_movies(interaction: discord.Interaction, title: str):
     serial = 1
     movies = db.search_movie(title)
+    if not movies:
+        await interaction.response.send_message(f'No movies found for **{title.upper()}**.', ephemeral = True)
+        return
     if len(movies) > 50:
         movies = movies[:50]
     if len(movies) > 25:
@@ -224,6 +239,9 @@ async def search_movies(interaction: discord.Interaction, title: str):
 async def search_series(interaction: discord.Interaction, title: str):
     serial = 1
     series = db.search_series(title)
+    if not series:
+        await interaction.response.send_message(f'No series found for **{title.upper()}**.', ephemeral = True)
+        return
     if len(series) > 50:
         series = series[:50]
     if len(series) > 25:
@@ -251,12 +269,12 @@ async def genres(interaction: discord.Interaction):
     if len(genres) > 25:
         page1 = genres[:25]
         page2 = genres[25:]
-        embed = dce.embed_genres(page1, 1, 2, interaction.user, count)
+        embed = dce.embed_genres(page1, 1, 2, interaction.user, count, serial)
         embedFxn = dce.embed_genres
         view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, serial = serial + 25)
         await interaction.response.send_message(embed = embed, view = view)
     else:
-        embed = dce.embed_genres(genres, 1, 1, interaction.user, count)
+        embed = dce.embed_genres(genres, 1, 1, interaction.user, count, serial)
         await interaction.response.send_message(embed = embed)    
 
 @bot.tree.command(name = "languages", description = "View all available languages")
@@ -273,12 +291,12 @@ async def languages(interaction: discord.Interaction):
     if len(languages) > 25:
         page1 = languages[:25]
         page2 = languages[25:]
-        embed = dce.embed_languages(page1, 1, 2, interaction.user, count)
+        embed = dce.embed_languages(page1, 1, 2, interaction.user, count, serial)
         embedFxn = dce.embed_languages
         view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, serial = serial + 25)
         await interaction.response.send_message(embed = embed, view = view)
     else:
-        embed = dce.embed_languages(languages, 1, 1, interaction.user, count)
+        embed = dce.embed_languages(languages, 1, 1, interaction.user, count, serial)
         await interaction.response.send_message(embed = embed)    
 
 def run():

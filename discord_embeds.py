@@ -19,7 +19,7 @@ def embed_top_rated_movies(moviesArray, pageNo, totalPages, user, count, serial)
     )
     for movie in moviesArray:
         title = movie['title']
-        rating = movie['rating']
+        rating = round(movie['rating'], 1)
     
         embed.add_field(
             name = f'{serial}. {title}',
@@ -39,7 +39,7 @@ def embed_top_rated_series(seriesArray, pageNo, totalPages, user, count, serial)
     )
     for series in seriesArray:
         title = series['title']
-        rating = series['rating']
+        rating = round(series['rating'], 1)
 
         embed.add_field(
             name = f'{serial}. {title}',
@@ -59,7 +59,7 @@ def embed_popular_movies(moviesArray, pageNo, totalPages, user, count, serial):
     )
     for movie in moviesArray:
         title = movie['title']
-        rating = movie['rating']
+        rating = round(movie['rating'], 1)
 
         embed.add_field(
             name = f'{serial}. {title}',
@@ -79,7 +79,7 @@ def embed_popular_series(seriesArray, pageNo, totalPages, user, count, serial):
     )
     for series in seriesArray:
         title = series['title']
-        rating = series['rating']
+        rating = round(series['rating'], 1)
 
         embed.add_field(
             name = f'{serial}. {title}',
@@ -99,7 +99,7 @@ def embed_movies_by_language(moviesArray, pageNo, totalPages, user, count, seria
     )
     for movie in moviesArray:
         title = movie['title']
-        rating = movie['rating']
+        rating = round(movie['rating'], 1)
 
         embed.add_field(
             name = f'{serial}. {title}',
@@ -119,7 +119,7 @@ def embed_series_by_language(seriesArray, pageNo, totalPages, user, count, seria
     )
     for series in seriesArray:
         title = series['title']
-        rating = series['rating']
+        rating = round(series['rating'], 1)
 
         embed.add_field(
             name = f'{serial}. {title}',
@@ -139,7 +139,7 @@ def embed_movies_by_genre(moviesArray, pageNo, totalPages, user, count, serial, 
     )
     for movie in moviesArray:
         title = movie['title']
-        rating = movie['rating']
+        rating = round(movie['rating'], 1)
 
         embed.add_field(
             name = f'{serial}. {title}',
@@ -159,7 +159,7 @@ def embed_series_by_genre(seriesArray, pageNo, totalPages, user, count, serial, 
     )
     for series in seriesArray:
         title = series['title']
-        rating = series['rating']
+        rating = round(series['rating'], 1)
 
         embed.add_field(
             name = f'{serial}. {title}',
@@ -179,7 +179,7 @@ def embed_movies_by_title(moviesArray, pageNo, totalPages, user, serial, title):
     )
     for movie in moviesArray:
         title = movie['title']
-        rating = movie['rating']
+        rating = round(movie['rating'], 1)
 
         embed.add_field(
             name = f'{serial}. {title}',
@@ -199,7 +199,7 @@ def embed_series_by_title(seriesArray, pageNo, totalPages, user, serial, title):
     )
     for series in seriesArray:
         title = series['title']
-        rating = series['rating']
+        rating = round(series['rating'], 1)
 
         embed.add_field(
             name = f'{serial}. {title}',
@@ -218,7 +218,7 @@ def embed_random_movie(movie, user):
     genre = movie['genre']
     language = movie['language']
     releasedOn = movie['released_on']
-    rating = movie['rating']
+    rating = round(movie['rating'], 1)
     poster = movie['poster']
 
     embed = discord.Embed(
@@ -245,7 +245,7 @@ def embed_random_series(series, user):
     genre = series['genre']
     language = series['language']
     releasedOn = series['released_on']
-    rating = series['rating']
+    rating = round(series['rating'], 1)
     poster = series['poster']
 
     embed = discord.Embed(
