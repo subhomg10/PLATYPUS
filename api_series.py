@@ -1,7 +1,10 @@
+import time
 import requests
 from dotenv import load_dotenv
 load_dotenv()
 import os
+import urllib3
+urllib3.disable_warnings()
 import database as db
 from config_tmdb import load_tmdb
 genreSeries, genreMovies, language = load_tmdb()
@@ -12,6 +15,7 @@ auth = os.getenv('API_ACCESS_TOKEN')
 
 seriesSet = []
 seriesId = []
+failedPages = []
 
 headers = {
     "accept": "application/json",
@@ -19,10 +23,24 @@ headers = {
 }
 
 def fetch_series(baseUrl, endpoint, page, headers, seriesSet):
-    r = requests.get(baseUrl + endpoint + f'{page}', headers = headers)
-    r.raise_for_status()
-    response = r.json()['results']
-    return clean_series(response, seriesSet)
+    for attempt in range(3):
+        try:
+            r = requests.get(
+                baseUrl + endpoint + f"{page}",
+                headers=headers,
+                timeout=10
+            )
+            r.raise_for_status()
+            response = r.json()["results"]
+            return clean_series(response, seriesSet)
+
+        except requests.exceptions.RequestException as e:
+            print(f"Page {page} failed (attempt {attempt+1}): {e}")
+            time.sleep(2)
+
+    print(f"Skipping page {page}")
+    failedPages.append(page)
+    print(failedPages)
 
 def clean_series(response, seriesSet):
     for series in response:
@@ -78,8 +96,8 @@ def series():
 def main():
     try:
         series()
-    except Exception as error:
-        print(error)
+    except requests.exceptions.RequestException as error:
+        print(f'Connection Failed {error}')
 
 if __name__ == "__main__":
     main()
