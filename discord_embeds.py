@@ -14,7 +14,7 @@ intents.members = True
 
 def embed_top_rated_movies(moviesArray, pageNo, totalPages, user, count):
     embed = discord.Embed(
-        title = f'⭐ Top {count} Rated Movies',
+        title = f'⭐  Top {count} Rated Movies',
         description = "Here are the top-rated Movies available.",
         color = color
     )
@@ -34,7 +34,7 @@ def embed_top_rated_movies(moviesArray, pageNo, totalPages, user, count):
 
 def embed_top_rated_series(seriesArray, pageNo, totalPages, user, count):
     embed = discord.Embed(
-        title = f'⭐ Top {count} Rated TV Series',
+        title = f'⭐  Top {count} Rated TV Series',
         description = "Here are the top-rated TV Series available.",
         color = color
     )
@@ -54,7 +54,7 @@ def embed_top_rated_series(seriesArray, pageNo, totalPages, user, count):
 
 def embed_popular_movies(moviesArray, pageNo, totalPages, user, count):
     embed = discord.Embed(
-        title = f'⭐ Top {count} Popular Movies',
+        title = f'⭐  Top {count} Popular Movies',
         description = "Here are the most popular Movies available.",
         color = color
     )
@@ -74,7 +74,7 @@ def embed_popular_movies(moviesArray, pageNo, totalPages, user, count):
 
 def embed_popular_series(seriesArray, pageNo, totalPages, user, count):
     embed = discord.Embed(
-        title = f'⭐ Top {count} Popular Movies',
+        title = f'⭐  Top {count} Popular Movies',
         description = "Here are the most popular TV Series available.",
         color = color
     )
@@ -94,7 +94,7 @@ def embed_popular_series(seriesArray, pageNo, totalPages, user, count):
 
 def embed_movies_by_language(moviesArray, pageNo, totalPages, user, count, language):
     embed = discord.Embed(
-        title = f'⭐ Top {count} {language.upper()} Movies',
+        title = f'⭐  Top {count} {language.upper()} Movies',
         description = f'Here are the top-rated **{language.upper()}** Movies available.',
         color = color
     )
@@ -114,7 +114,7 @@ def embed_movies_by_language(moviesArray, pageNo, totalPages, user, count, langu
 
 def embed_series_by_language(seriesArray, pageNo, totalPages, user, count, language):
     embed = discord.Embed(
-        title = f'⭐ Top {count} {language.upper()} TV Series',
+        title = f'⭐  Top {count} {language.upper()} TV Series',
         description = f'Here are the top-rated **{language.upper()}** TV Series available.',
         color = color
     )
@@ -134,7 +134,7 @@ def embed_series_by_language(seriesArray, pageNo, totalPages, user, count, langu
 
 def embed_movies_by_genre(moviesArray, pageNo, totalPages, user, count, genre):
     embed = discord.Embed(
-        title = f'⭐ Top {count} {genre.upper()} Movies',
+        title = f'⭐  Top {count} {genre.upper()} Movies',
         description = f'Here are the top-rated **{genre.upper()}** Movies available.',
         color = color
     )
@@ -154,7 +154,7 @@ def embed_movies_by_genre(moviesArray, pageNo, totalPages, user, count, genre):
 
 def embed_series_by_genre(seriesArray, pageNo, totalPages, user, count, genre):
     embed = discord.Embed(
-        title = f'⭐ Top {count} {genre.upper()} Movies',
+        title = f'⭐  Top {count} {genre.upper()} Movies',
         description = f'Here are the top-rated **{genre.upper()}** TV Series available.',
         color = color
     )
@@ -262,84 +262,86 @@ def embed_random_series(series, user):
 
 def embed_help():
     embed = discord.Embed(
-        title = "🎬 ALL COMMANDS",
+        title = "🎬  ALL COMMANDS",
         description = "Explore movies, series, and utility commands using the options below.\nUse `/<command-name>`",
         color = color
     )
     embed.set_image(url = image)
     embed.add_field(
-        name = "**🎥 MOVIES**", 
+        name = "**🎥  MOVIES**", 
         value = "• /search-movie\n• /random-movie\n• /top-rated-movies\n• /popular-movies\n• /movie-genre\n• /movie-language", 
         inline = True
     )
     embed.add_field(
-        name = "**📺 SERIES**", 
+        name = "**📺  SERIES**", 
         value = "• /search-series\n• /random-series\n• /top-rated-series\n• /popular-series\n• /series-genre\n• /series-language", 
         inline = True
     )
     embed.add_field(
-        name = "**⚙️ UTILITIES**", 
+        name = "**⚙️  UTILITIES**", 
         value = "• /help\n• /about\n• /stats\n• /ping\n• /genres\n• /languages", 
         inline = True
     )
-    embed.set_footer(text = "🍿 Happy watching! Hope you find something amazing to watch.")
+    embed.set_footer(text = "🍿  Happy watching! Hope you find something amazing to watch.")
+    embed.set_image(url = image)
     return embed
 
 def embed_about():
     embed = discord.Embed(
-        title = "🎬 PLATYPUS : Movie & Series Recommendation Bot",
+        title = "🎬  PLATYPUS : Movie & Series Recommendation Bot",
         description = ("PLATYPUS is a Discord bot designed to help users discover movies and TV series through simple slash commands."),
         color = color
     )
     embed.add_field(
-        name = "✨ Features",
-        value = ("• 🔎 Search movies and series by name\n• 🎲 Get random recommendations\n• ⭐ Explore top-rated and popular content\n• 🎭 Filter recommendations by genre and language"),
+        name = "✨  Features",
+        value = ("• 🔎  Search movies and series by name\n• 🎲  Get random recommendations\n• ⭐  Explore top-rated and popular content\n• 🎭  Filter recommendations by genre and language"),
         inline = False
     )
     embed.add_field(
-        name = "⚙️ Powered By",
+        name = "⚙️  Powered By",
+        value=("• 🐍  Python\n• 💬  Discord.py\n• 🗄️  PostgreSQL\n• 🌐  TMDB API"),
         inline = False
     )
-    embed.set_footer(text = "🍿 Use /help to explore available commands.")
+    embed.set_footer(text = "🍿  Use /help to explore available commands.")
     return embed
 
 def embed_stats(latency, totalMovies, totalSeries):
     embed = discord.Embed(
-        title = "📊 PLATYPUS Bot Statistics",
+        title = "📊  PLATYPUS Bot Statistics",
         description = "Here are the current statistics and system information of PLATYPUS.",
         color = color
     )
     embed.add_field(
-        name = "🤖 **Bot Information**",
-        value = f'• Bot Name: PLATYPUS\n• Status: 🟢 Online\n• Latency: {latency} ms\n• Discord.py Version: 2.5.2)',
+        name = "🤖  **Bot Information**",
+        value = f'• Bot Name: PLATYPUS\n• Status: 🟢  Online\n• Latency: {latency} ms\n• Discord.py Version: 2.5.2)',
         inline = False
     )
     embed.add_field(
-        name = "🎬 **Database Statistics**",
+        name = "🎬  **Database Statistics**",
         value = f'• Total Movies: {totalMovies}\n• Total Series: {totalSeries}\n• Database: PostgreSQL\n• Storage: Local Database Cache',
         inline = False
     )
     embed.add_field(
-        name = "⚙️ **System Information**",
+        name = "⚙️  **System Information**",
         value = "• Language: Python\n• API: TMDB API\n• Hosting: Local",
         inline = False
     )
-    embed.set_footer(text = "🍿 PLATYPUS • Your Personal Movie & Series Assistant")
+    embed.set_footer(text = "🍿  PLATYPUS • Your Personal Movie & Series Assistant")
     return embed
 
 def embed_ping():
     latency = discord.bot*1000
     embed = discord.Embed(
-        title = "🏓 PONG!",
-        description = f"• Latency: `{latency} ms`\n• Status: 🟢 Online",
+        title = "🏓  PONG!",
+        description = f"• Latency: `{latency} ms`\n• Status: 🟢  Online",
         color = color
     )
-    embed.set_footer(text = "🍿 PLATYPUS • Movie & Series Assistant")
+    embed.set_footer(text = "🍿  PLATYPUS • Movie & Series Assistant")
     return embed
 
 def embed_genres(genreArray, pageNo, totalPages, user, count):
     embed = discord.Embed(
-        title = "🎭 AVAILABLE GENRES",
+        title = "🎭  AVAILABLE GENRES",
         description = f'Explore movies and series by selecting your preferred genre.\nTotal Genres: {count}',
         color = color
     )
@@ -354,7 +356,7 @@ def embed_genres(genreArray, pageNo, totalPages, user, count):
 
 def embed_languages(languageArray, pageNo, totalPages, user, count):
     embed = discord.Embed(
-        title = "🎭 AVAILABLE LANGUAGES",
+        title = "🎭  AVAILABLE LANGUAGES",
         description = f'Explore movies and series by selecting your preferred language.\nTotal Languages: {count}',
         color = color
     )
