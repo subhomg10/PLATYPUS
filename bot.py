@@ -24,6 +24,8 @@ bot=commands.Bot(command_prefix='r!',intents=intents)
 async def on_ready():
     await bot.tree.sync()
     await bot.change_presence(activity = discord.Game(name = "🍿 Finding Your Next Watch"))
+    print(bot.guilds)
+    print(len(bot.guilds))
     print(f'Logging in as {bot.user}')
 
 @bot.tree.command(name = "help", description = "View all available commands")

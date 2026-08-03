@@ -288,7 +288,6 @@ def embed_help():
     )
     embed.set_footer(text = "🍿  Happy watching! Hope you find something amazing to watch.")
     embed.set_thumbnail(url = thumbnail)
-    embed.set_image(url = image)
     return embed
 
 def embed_about():
