@@ -135,73 +135,73 @@ async def popular_series(interaction: discord.Interaction, count: int):
         embed = dce.embed_popular_series(series, 1, 1, interaction.user, count, serial)
         await interaction.response.send_message(embed = embed)
 
-# @bot.tree.command(name = "movies-language", description = "Find Movies by language")
-# async def movies_language(interaction: discord.Interaction, count: int, language: str):
-#     serial = 1
-#     if count > 50:
-#         count = 50
-#     movies = db.get_movies_by_language(language, count)
-#     if count > 25:
-#         page1 = movies[:25]
-#         page2 = movies[25:]
-#         embed = dce.embed_movies_by_language(page1, 1, 2, interaction.user, count, serial, language)
-#         embedFxn = dce.embed_movies_by_language
-#         view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, language = language, serial = serial + 25)
-#         await interaction.response.send_message(embed = embed, view = view)
-#     else:
-#         embed = dce.embed_movies_by_language(movies, 1, 1, interaction.user, count, serial, language)
-#         await interaction.response.send_message(embed = embed)
+@bot.tree.command(name = "movies-language", description = "Find Movies by language")
+async def movies_language(interaction: discord.Interaction, count: int, language: str):
+    serial = 1
+    if count > 50:
+        count = 50
+    movies = db.get_movies_by_language(language, count)
+    if count > 25:
+        page1 = movies[:25]
+        page2 = movies[25:]
+        embed = dce.embed_movies_by_language(page1, 1, 2, interaction.user, count, serial, language)
+        embedFxn = dce.embed_movies_by_language
+        view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, language = language, serial = serial + 25)
+        await interaction.response.send_message(embed = embed, view = view)
+    else:
+        embed = dce.embed_movies_by_language(movies, 1, 1, interaction.user, count, serial, language)
+        await interaction.response.send_message(embed = embed)
 
-# @bot.tree.command(name = "series-language", description = "Find TV series by language")
-# async def series_language(interaction: discord.Interaction, count: int, language: str):
-#     serial = 1
-#     if count > 50:
-#         count = 50
-#     series = db.get_series_by_language(language, count)
-#     if count > 25:
-#         page1 = series[:25]
-#         page2 = series[25:]
-#         embed = dce.embed_series_by_language(page1, 1, 2, interaction.user, count, serial, language)
-#         embedFxn = dce.embed_series_by_language
-#         view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, language = language, serial = serial + 25)
-#         await interaction.response.send_message(embed = embed, view = view)
-#     else:
-#         embed = dce.embed_series_by_language(series, 1, 1, interaction.user, count, serial, language)
-#         await interaction.response.send_message(embed = embed)
+@bot.tree.command(name = "series-language", description = "Find TV series by language")
+async def series_language(interaction: discord.Interaction, count: int, language: str):
+    serial = 1
+    if count > 50:
+        count = 50
+    series = db.get_series_by_language(language, count)
+    if count > 25:
+        page1 = series[:25]
+        page2 = series[25:]
+        embed = dce.embed_series_by_language(page1, 1, 2, interaction.user, count, serial, language)
+        embedFxn = dce.embed_series_by_language
+        view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, language = language, serial = serial + 25)
+        await interaction.response.send_message(embed = embed, view = view)
+    else:
+        embed = dce.embed_series_by_language(series, 1, 1, interaction.user, count, serial, language)
+        await interaction.response.send_message(embed = embed)
 
-# @bot.tree.command(name = "movies-genre", description = "Find Movies by genre")
-# async def movies_genre(interaction: discord.Interaction, count: int, genre: str):
-#     serial = 1
-#     if count > 50:
-#         count = 50
-#     movies = db.get_movies_by_genre(genre, count)
-#     if count > 25:
-#         page1 = movies[:25]
-#         page2 = movies[25:]
-#         embed = dce.embed_movies_by_genre(page1, 1, 2, interaction.user, count, serial, genre)
-#         embedFxn = dce.embed_movies_by_genre
-#         view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, genre = genre, serial = serial + 25)
-#         await interaction.response.send_message(embed = embed, view = view)
-#     else:
-#         embed = dce.embed_movies_by_genre(movies, 1, 1, interaction.user, count, serial, genre)
-#         await interaction.response.send_message(embed = embed)
+@bot.tree.command(name = "movies-genre", description = "Find Movies by genre")
+async def movies_genre(interaction: discord.Interaction, count: int, genre: str):
+    serial = 1
+    if count > 50:
+        count = 50
+    movies = db.get_movies_by_genre(genre, count)
+    if count > 25:
+        page1 = movies[:25]
+        page2 = movies[25:]
+        embed = dce.embed_movies_by_genre(page1, 1, 2, interaction.user, count, serial, genre)
+        embedFxn = dce.embed_movies_by_genre
+        view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, genre = genre, serial = serial + 25)
+        await interaction.response.send_message(embed = embed, view = view)
+    else:
+        embed = dce.embed_movies_by_genre(movies, 1, 1, interaction.user, count, serial, genre)
+        await interaction.response.send_message(embed = embed)
 
-# @bot.tree.command(name = "series-genre", description = "Find TV series by genre")
-# async def series_genre(interaction: discord.Interaction, count: int, genre: str):
-#     serial = 1
-#     if count > 50:
-#         count = 50
-#     series = db.get_series_by_genre(genre, count)
-#     if count > 25:
-#         page1 = series[:25]
-#         page2 = series[25:]
-#         embed = dce.embed_series_by_genre(page1, 1, 2, interaction.user, count, serial, genre)
-#         embedFxn = dce.embed_series_by_genre
-#         view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, genre = genre, serial = serial + 25)
-#         await interaction.response.send_message(embed = embed, view = view)
-#     else:
-#         embed = dce.embed_series_by_genre(series, 1, 1, interaction.user, count, serial, genre)
-#         await interaction.response.send_message(embed = embed)
+@bot.tree.command(name = "series-genre", description = "Find TV series by genre")
+async def series_genre(interaction: discord.Interaction, count: int, genre: str):
+    serial = 1
+    if count > 50:
+        count = 50
+    series = db.get_series_by_genre(genre, count)
+    if count > 25:
+        page1 = series[:25]
+        page2 = series[25:]
+        embed = dce.embed_series_by_genre(page1, 1, 2, interaction.user, count, serial, genre)
+        embedFxn = dce.embed_series_by_genre
+        view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, genre = genre, serial = serial + 25)
+        await interaction.response.send_message(embed = embed, view = view)
+    else:
+        embed = dce.embed_series_by_genre(series, 1, 1, interaction.user, count, serial, genre)
+        await interaction.response.send_message(embed = embed)
 
 @bot.tree.command(name = "search-movies", description = "Search movies by title")
 async def search_movies(interaction: discord.Interaction, title: str):
@@ -237,49 +237,49 @@ async def search_series(interaction: discord.Interaction, title: str):
         embed = dce.embed_series_by_title(series, 1, 1, interaction.user, serial, title)
         await interaction.response.send_message(embed = embed)
 
-# @bot.tree.command(name = "genres", description = "View all available genres")
-# async def genres(interaction: discord.Interaction):
-#     serial = 1
-#     genres = db.get_all_genre_movies()
-#     genreSeries = db.get_all_genre_series()
-#     for genre in genreSeries:
-#         if genre not in genres:
-#             genres.append(genre)
-#     count = len(genres)
-#     if len(genres) > 50:
-#         genres = genres[:25]
-#     if len(genres) > 25:
-#         page1 = genres[:25]
-#         page2 = genres[25:]
-#         embed = dce.embed_genres(page1, 1, 2, interaction.user, count)
-#         embedFxn = dce.embed_genres
-#         view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, serial = serial + 25)
-#         await interaction.response.send_message(embed = embed, view = view)
-#     else:
-#         embed = dce.embed_genres(genres, 1, 1, interaction.user, count)
-#         await interaction.response.send_message(embed = embed)    
+@bot.tree.command(name = "genres", description = "View all available genres")
+async def genres(interaction: discord.Interaction):
+    serial = 1
+    genres = db.get_all_genre_movies()
+    genreSeries = db.get_all_genre_series()
+    for genre in genreSeries:
+        if genre not in genres:
+            genres.append(genre)
+    count = len(genres)
+    if len(genres) > 50:
+        genres = genres[:25]
+    if len(genres) > 25:
+        page1 = genres[:25]
+        page2 = genres[25:]
+        embed = dce.embed_genres(page1, 1, 2, interaction.user, count)
+        embedFxn = dce.embed_genres
+        view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, serial = serial + 25)
+        await interaction.response.send_message(embed = embed, view = view)
+    else:
+        embed = dce.embed_genres(genres, 1, 1, interaction.user, count)
+        await interaction.response.send_message(embed = embed)    
 
-# @bot.tree.command(name = "languages", description = "View all available languages")
-# async def languages(interaction: discord.Interaction):
-#     serial = 1
-#     languages = db.get_all_language_movies()
-#     languageSeries = db.get_all_language_series()
-#     for language in languageSeries:
-#         if language not in languages:
-#             languages.append(language)
-#     count = len(languages)
-#     if len(languages) > 50:
-#         languages = languages[:50]
-#     if len(languages) > 25:
-#         page1 = languages[:25]
-#         page2 = languages[25:]
-#         embed = dce.embed_languages(page1, 1, 2, interaction.user, count)
-#         embedFxn = dce.embed_languages
-#         view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, serial = serial + 25)
-#         await interaction.response.send_message(embed = embed, view = view)
-#     else:
-#         embed = dce.embed_languages(languages, 1, 1, interaction.user, count)
-#         await interaction.response.send_message(embed = embed)    
+@bot.tree.command(name = "languages", description = "View all available languages")
+async def languages(interaction: discord.Interaction):
+    serial = 1
+    languages = db.get_all_language_movies()
+    languageSeries = db.get_all_language_series()
+    for language in languageSeries:
+        if language not in languages:
+            languages.append(language)
+    count = len(languages)
+    if len(languages) > 50:
+        languages = languages[:50]
+    if len(languages) > 25:
+        page1 = languages[:25]
+        page2 = languages[25:]
+        embed = dce.embed_languages(page1, 1, 2, interaction.user, count)
+        embedFxn = dce.embed_languages
+        view = dcb.Buttons(page1, page2, embedFxn, interaction.user, count = count, serial = serial + 25)
+        await interaction.response.send_message(embed = embed, view = view)
+    else:
+        embed = dce.embed_languages(languages, 1, 1, interaction.user, count)
+        await interaction.response.send_message(embed = embed)    
 
 def run():
     bot.run(token)
