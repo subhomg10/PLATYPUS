@@ -9,6 +9,13 @@ import database as db
 from config_tmdb import load_tmdb
 genreSeries, genreMovies, language = load_tmdb()
 
+print(len(genreMovies))
+print(len(genreSeries))
+print(len(language))
+
+print(list(genreMovies.items())[:5])
+print(list(language.items())[:5])
+
 baseUrl = os.getenv('BASE_URL')
 endpointTopRated = os.getenv('ENDPOINT_MOVIES_TOP_RATED')
 endpointPopular = os.getenv('ENDPOINT_MOVIES_POPULAR')
@@ -27,11 +34,7 @@ headers = {
 def fetch_movies(baseUrl, endpoint, page, headers, moviesSet):
     for attempt in range(5):
         try:
-            r = requests.get(
-                baseUrl + endpoint + f"{page}",
-                headers=headers,
-                timeout=10
-            )
+            r = requests.get(baseUrl + endpoint + f"{page}", headers = headers, timeout = 10)
             r.raise_for_status()
             response = r.json()["results"]
             return clean_movies(response, moviesSet)
@@ -60,6 +63,12 @@ def clean_movies(response, moviesSet):
             'adult' : movies.get('adult', False),           
             'poster' : movies.get('poster_path')
         }
+        print(movies["genre_ids"])
+        print(get_genre(movies["genre_ids"]))
+
+        print(movies["original_language"])
+        print(get_language(movies["original_language"]))
+        
         get_movies(moviesList, moviesSet)
     return moviesSet
 

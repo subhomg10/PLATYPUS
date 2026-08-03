@@ -1,3 +1,4 @@
+import time
 import requests
 import os
 from dotenv import load_dotenv
@@ -19,39 +20,76 @@ headers = {
 }
 
 def fetch_genre(baseUrl, endpoint, headers, genreSet):
-  r = requests.get(baseUrl + endpoint, headers=headers)
-  r.raise_for_status()
-  response = r.json()['genres']
-  return create_genre_map(response, genreSet)
+  for attempt in range(5):
+    try:
+      r = requests.get(baseUrl + endpoint, headers = headers, timeout = 10)
+      r.raise_for_status()
+      response = r.json()["genres"]
+      return create_genre_map(response, genreSet)
 
-def fetch_lang(baseUrl, endpoint, headers, langSet):
-  r = requests.get(baseUrl + endpoint, headers = headers)
-  r.raise_for_status()
-  response = r.json()
-  return create_langMap(response, langSet)
+    except requests.exceptions.RequestException as e:
+      print(e)
+      time.sleep(3)
+
+  raise Exception("Couldn't fetch genre map")
+
+def fetch_language(baseUrl, endpoint, headers, langSet):
+  for attempt in range(5):
+    try:
+      r = requests.get(baseUrl + endpoint, headers = headers, timeout = 10)
+      r.raise_for_status()
+      response = r.json()
+      return create_language_map(response, langSet)
+
+    except requests.exceptions.RequestException as e:
+      print(e)
+      time.sleep(3)
+
+  raise Exception("Couldn't fetch language map")
 
 def create_genre_map(response, genreSet):
   for data in response:
     genreSet[data['id']] = data['name']
   return genreSet  
 
-def create_langMap(response, langSet):
+def create_language_map(response, langSet):
   for data in response:
     langSet[data['iso_639_1']] = data['english_name']
   return langSet
 
+# def load_tmdb():
+#   try:
+
+#     fetch_genre(baseUrl, endpointSeries, headers, genreSeries)
+#     fetch_genre(baseUrl, endpointMovies, headers, genreMovies)
+#     fetch_lang(baseUrl, endpointLanguage, headers, language)
+
+#     return genreSeries, genreMovies, language
+
+#   except Exception as error:
+#     print(error)
+#     return {},{},{}
+
 def load_tmdb():
-  try:
+    try:
 
-    fetch_genre(baseUrl, endpointSeries, headers, genreSeries)
-    fetch_genre(baseUrl, endpointMovies, headers, genreMovies)
-    fetch_lang(baseUrl, endpointLanguage, headers, language)
+        print("Fetching series genres...")
+        fetch_genre(baseUrl, endpointSeries, headers, genreSeries)
 
-    return genreSeries, genreMovies, language
+        print("Fetching movie genres...")
+        fetch_genre(baseUrl, endpointMovies, headers, genreMovies)
 
-  except Exception as error:
-    print(error)
-    return {},{},{}
+        print("Fetching languages...")
+        fetch_language(baseUrl, endpointLanguage, headers, language)
+
+        print(genreMovies)
+        print(language)
+
+        return genreSeries, genreMovies, language
+
+    except Exception as error:
+        print("ERROR:", error)
+        return {}, {}, {}
 
 if __name__ == "__main__":
   load_tmdb()
