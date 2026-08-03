@@ -33,8 +33,9 @@ async def help(interaction: discord.Interaction):
 
 @bot.tree.command(name = "ping", description = "Check the bot's response time")
 async def ping(interaction: discord.Interaction):
-    embed = dce.embed_ping()
-    view = dcb.Ping()
+    latency = bot.latency*1000
+    embed = dce.embed_ping(latency)
+    view = dcb.Ping(latency)
     await interaction.response.send_message(embed = embed, view = view)
 
 @bot.tree.command(name = "about", description = "Learn more about PLATYPUS")

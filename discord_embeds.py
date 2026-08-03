@@ -329,8 +329,7 @@ def embed_stats(latency, totalMovies, totalSeries):
     embed.set_footer(text = "🍿  PLATYPUS • Your Personal Movie & Series Assistant")
     return embed
 
-def embed_ping():
-    latency = discord.bot*1000
+def embed_ping(latency):
     embed = discord.Embed(
         title = "🏓  PONG!",
         description = f"• Latency: `{latency} ms`\n• Status: 🟢  Online",

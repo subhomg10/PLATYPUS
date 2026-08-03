@@ -47,8 +47,11 @@ class Buttons(discord.ui.View):
         await interaction.response.edit_message(embed = embed, view = self)
 
 class Ping(discord.ui.View):
+    def __init__(self, latency):
+        super().__init__()
+        self.latency = latency
     @discord.ui.button(label = "Test Again", style = discord.ButtonStyle.primary)
     async def testAgain(self, interaction: discord.Interaction):
-        embed = dce.embed_ping()
+        embed = dce.embed_ping(self.latency)
         await interaction.response.edit_message(embed = embed, view = self)
         
