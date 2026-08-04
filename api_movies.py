@@ -6,7 +6,7 @@ import os
 import urllib3
 urllib3.disable_warnings()
 import database as db
-from config_tmdb import load_tmdb
+from config_api import load_tmdb
 genreSeries, genreMovies, language = load_tmdb()
 
 print(len(genreMovies))

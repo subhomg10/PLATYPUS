@@ -1,7 +1,8 @@
 .env
+.env.example
+discord.log
 __pycache__/
 *.pyc
-discord.log
 .vscode/
 .idea/
 screenshots/
