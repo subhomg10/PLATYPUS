@@ -76,15 +76,24 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 ---
 
 ## **⚙️  Installation**
-1. **Clone the repository**
+1. **Clone the repository:**
+
     `git clone https://github.com/subhomg10/PLATYPUS.git cd PLATYPUS`
-2. **Install the required dependencies**
+
+2. **Install the required dependencies:**
+
     `pip install -r requirements.txt`
-3. **Configure environment variables**
+
+3. **Configure environment variables:**
+
     Create a `.env` file by copying the values from `.env.example` and replace the placeholders with your own credentials.
-4. **Set up PostgreSQL**
+
+4. **Set up PostgreSQL:**
+
     Create a PostgreSQL database and update the database credentials in your `.env` file.
-5. **Run the bot**
+
+5. **Run the bot:**
+
     `python bot.py`
 
 ---
