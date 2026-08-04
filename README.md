@@ -1,6 +1,8 @@
 # **🎬  PLATYPUS**
 A Discord bot that helps users discover movies and TV series through an interactive, database-backed recommendation system powered by Python, PostgreSQL, and the TMDB API.
+
 ---
+
 ## **✨  Overview**
 PLATYPUS is a Discord bot built to make discovering movies and TV series simple and interactive without leaving Discord.
 
