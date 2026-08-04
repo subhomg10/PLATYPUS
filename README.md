@@ -105,23 +105,30 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 - `/search-movies`
 - `/search-series`
 
+
 - `/random-movie`
 - `/random-series`
+
 
 - `/top-rated-movies`
 - `/top-rated-series`
 
+
 - `/popular-movies`
 - `/popular-series`
+
 
 - `/movies-genre`
 - `/movies-language`
 
+
 - `/series-genre`
 - `/series-language`
 
+
 - `/genres`
 - `/languages`
+
 
 - `/help`
 - `/about`
