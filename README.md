@@ -1,11 +1,9 @@
 # **🎬  PLATYPUS**
-
->A Discord bot that helps users discover movies and TV series through an interactive, database-backed recommendation system powered by Python, PostgreSQL, and the TMDB API.
+A Discord bot that helps users discover movies and TV series through an interactive, database-backed recommendation system powered by Python, PostgreSQL, and the TMDB API.
 
 ---
 
 ## **✨  Overview**
-
 PLATYPUS is a Discord bot built to make discovering movies and TV series simple and interactive without leaving Discord.
 
 Instead of scrolling endlessly through streaming platforms, users can search, browse, and receive recommendations directly through slash commands.
@@ -15,9 +13,7 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 ---
 
 ## **🚀  Features**
-
 ### 🎥  Movies
-
 - Search movies by title
 - Get a random movie recommendation
 - Browse top-rated movies
@@ -26,7 +22,6 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 - Discover movies by language
 
 ### **📺  TV Series**
-
 - Search TV series by title
 - Get a random TV series recommendation
 - Browse top-rated series
@@ -35,7 +30,6 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 - Discover series by language
 
 ### **📚  Utilities**
-
 - View all available genres
 - View all supported languages
 - Bot statistics
@@ -46,7 +40,6 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 ---
 
 ## **⚡  Highlights**
-
 - Modern Slash Commands
 - Interactive Discord Buttons
 - Multi-page Pagination
@@ -60,7 +53,6 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 ---
 
 ## **🛠  Tech Stack**
-
 ### **Programming Language**
 
 - Python
@@ -84,7 +76,6 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 ---
 
 ## **📁  Project Structure**
-
 Platypus/
 │
 ├── .env
@@ -102,7 +93,6 @@ Platypus/
 ---
 
 ## **📊  How It Works**
-
 1. Movie and TV metadata is fetched from TMDB.
 2. The data is cleaned and transformed.
 3. Processed records are stored inside PostgreSQL.
@@ -112,7 +102,6 @@ Platypus/
 ---
 
 ## **🎯  Example Commands**
-
 - `/search-movies`
 - `/search-series`
 
@@ -142,7 +131,6 @@ Platypus/
 ---
 
 ## **📌  Future Improvements**
-
 - User watchlists
 - Favorite movies & series
 - Recommendation history
@@ -151,17 +139,12 @@ Platypus/
 - Personalized recommendations
 - Multi-language interface
 
----
-
 ## **📸  Bot Preview**
-
 ###  **/about**
 
 >Displays an overview of the bot, its purpose, and supported features.
 
 ![about](/screenshots/about.png)
-
----
 
 ### **/help**
 
@@ -169,23 +152,17 @@ Platypus/
 
 ![help](/screenshots/help.png)
 
----
-
 ### **/random-movie**
 
 >Returns a randomly selected movie with detailed information including poster, genre, language, release date, and rating(if available).
 
 ![random-movie](/screenshots/random_movie.png)
 
----
-
 ### **/movies-genre**
 
 >Displays movies filtered by a selected genre with a user-defined result count.
 
 ![movies-genre](/screenshots/movies_genre.png)
-
----
 
 ### **/top-rated-movies**
 
@@ -198,21 +175,18 @@ Platypus/
 ---
 
 ## **🤝  Contributing**
-
 Suggestions, improvements, and pull requests are always welcome.
 If you find a bug or have an idea for a new feature, feel free to open an issue.
 
 ---
 
 ## **📄  License**
-
 This bot is intended as a portfolio project.
 It is not continuously hosted, but can be run locally after configuring the required environment variables.
 
 ---
 
 ## **👨‍💻  Author**
-
 **Subhom Ghosh**
 
 Backend Developer (Python • PostgreSQL • Discord.py)
