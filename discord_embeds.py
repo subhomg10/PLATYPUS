@@ -353,7 +353,7 @@ def embed_about():
     )
     embed.add_field(
         name = "⚙️  Powered By",
-        value=("• Python\n• Discord.py\n• PostgreSQL\n• TMDB API"),
+        value=("• Python\n• Discord API\n• PostgreSQL\n• TMDB API"),
         inline = False
     )
     embed.set_thumbnail(url = thumbnail)
