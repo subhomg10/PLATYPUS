@@ -7,10 +7,6 @@ color = int(os.getenv('COLOR_CODE'), 16)
 thumbnail = os.getenv('PLATYPUS_THUMBNAIL')
 image = os.getenv('PLATYPUS_IMAGE')
 
-intents = discord.Intents.default()
-intents.message_content = True
-intents.members = True
-
 def embed_top_rated_movies(moviesArray, pageNo, totalPages, user, count, serial):
     embed = discord.Embed(
         title = f'⭐  Top {count} Rated Movies',
