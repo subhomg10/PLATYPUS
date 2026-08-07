@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord import app_commands as app
 import logging
 import os
 import database as db
@@ -27,6 +28,13 @@ async def on_ready():
     print(bot.guilds)
     print(len(bot.guilds))
     print(f'Logging in as {bot.user}')
+
+@bot.tree.error
+async def error_handler(interaction: discord.Interaction, error: app.AppCommandError):
+    if isinstance(error, app.MissingArguments):
+        await interaction.response.send_message("You are missing arguments", ephemeral = True)
+    else:
+        await interaction.response.send_message("An unknown error occured", ephemeral = True)
 
 @bot.tree.command(name = "help", description = "View all available commands")
 async def help(interaction: discord.Interaction):

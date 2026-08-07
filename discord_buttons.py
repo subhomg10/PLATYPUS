@@ -3,15 +3,14 @@ import discord_embeds as dce
 
 class Buttons(discord.ui.View):
     def __init__(self, page1, page2, embedFxn, user, **embedArgs):
-        super().__init__()
+        super().__init__(timeout = None)
         self.page1 = page1
         self.page2 = page2
         self.embedFxn = embedFxn
         self.user = user
         self.embedArgs = embedArgs
 
-
-    @discord.ui.button(label = "◀", style = discord.ButtonStyle.primary, disabled = True)
+    @discord.ui.button(label = "◀", style = discord.ButtonStyle.primary, disabled = True, custom_id = "prev")
     async def previous(self, interaction: discord.Interaction, button: discord.ui.Button):
         if interaction.user != self.user:
             await interaction.response.send_message(
@@ -31,7 +30,7 @@ class Buttons(discord.ui.View):
 
         await interaction.response.edit_message(embed = embed, view = self)
 
-    @discord.ui.button(label = "▶", style = discord.ButtonStyle.primary, disabled = False)
+    @discord.ui.button(label = "▶", style = discord.ButtonStyle.primary, disabled = False, custom_id = "next")
     async def next(self, interaction: discord.Interaction, button: discord.ui.Button):
         if interaction.user != self.user:
             await interaction.response.send_message(
@@ -52,11 +51,11 @@ class Buttons(discord.ui.View):
         await interaction.response.edit_message(embed = embed, view = self)
         
 class Ping(discord.ui.View):
-    def __init__(self, latency):
-        super().__init__()
-        self.latency = latency
-    @discord.ui.button(label = "Test Again", style = discord.ButtonStyle.primary)
+    def __init__(self,):
+        super().__init__(timeout = None)
+    @discord.ui.button(label = "Re-Test", style = discord.ButtonStyle.primary, custom_id = "ping")
     async def testAgain(self, interaction: discord.Interaction, button: discord.ui.Button):
-        embed = dce.embed_ping(self.latency)
+        latency = round(interaction.client.latency*1000, 2)
+        embed = dce.embed_ping(latency)
         await interaction.response.edit_message(embed = embed, view = self)
         
