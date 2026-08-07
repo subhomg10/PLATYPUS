@@ -1,5 +1,5 @@
 discord.py
+python-dotenv
 requests
 urllib3
 psycopg2-binary
-python-dotenv
