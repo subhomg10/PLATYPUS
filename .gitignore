@@ -1,6 +1,17 @@
+# Secrets
 .env
-discord.log
+
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Logs
+*.log
+
+# IDEs
 .vscode/
 .idea/

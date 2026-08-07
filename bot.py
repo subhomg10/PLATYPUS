@@ -13,7 +13,7 @@ token = os.getenv('BOT_TOKEN')
 color = int(os.getenv('COLOR_CODE'), 16)
 image = os.getenv('IMAGE_URL')
 
-handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='a')
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -308,7 +308,7 @@ async def languages(interaction: discord.Interaction):
         await interaction.response.send_message(embed = embed)    
 
 def run():
-    bot.run(token)
+    bot.run(token, log_handler = handler)
 
 def main():
     try:
