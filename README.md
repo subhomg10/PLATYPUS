@@ -1,9 +1,14 @@
 # **🎬  PLATYPUS**
+![Python](https://img.shields.io/badge/Python-3.13-blue)
+![Discord.py](https://img.shields.io/badge/discord.py-2.x-5865F2)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-336791)
+![TMDB API](https://img.shields.io/badge/TMDB-API-01D277)
+
 A Discord bot that helps users discover movies and TV series through an interactive, database-backed recommendation system powered by Python, PostgreSQL, and the TMDB API.
 
 ---
 
-## **✨  Overview**
+## **✨  OVERVIEW**
 PLATYPUS is a Discord bot built to make discovering movies and TV series simple and interactive without leaving Discord.
 
 Instead of scrolling endlessly through streaming platforms, users can search, browse, and receive recommendations directly through slash commands.
@@ -12,7 +17,7 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 
 ---
 
-## **🚀  Features**
+## **🚀  FEATURES**
 ### 🎥  Movies
 - Search movies by title
 - Get a random movie recommendation
@@ -39,7 +44,7 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 
 ---
 
-## **⚡  Highlights**
+## **⚡  HIGHLIGHTS**
 - Modern Slash Commands
 - Interactive Discord Buttons
 - Multi-page Pagination
@@ -52,7 +57,7 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 
 ---
 
-## **🛠  Tech Stack**
+## **🛠  TECH STACK**
 ### **Programming Language**
 
 - Python
@@ -75,7 +80,7 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 
 ---
 
-## **⚙️  Installation**
+## **⚙️  INSTALLATION**
 1. **Clone the repository:**
 
     `git clone https://github.com/subhomg10/PLATYPUS.git cd PLATYPUS`
@@ -98,7 +103,7 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 
 ---
 
-## **📁  Project Structure**
+## **📁  PROJECT STRUCTURE**
 - Platypus/
     - screenshots/
     - .env.example
@@ -115,7 +120,7 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 
 ---
 
-## **📊  How It Works**
+## **📊  HOW IT WORKS**
 1. Movie and TV metadata is fetched from TMDB.
 2. The data is cleaned and transformed.
 3. Processed records are stored inside PostgreSQL.
@@ -124,7 +129,7 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 
 ---
 
-## **🎯  Example Commands**
+## **🎯  ALL COMMANDS**
 - `/search-movies`
 - `/search-series`
 
@@ -153,7 +158,7 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 
 ---
 
-## **📌  Future Improvements**
+## **📌  FUTURE IMPROVEMENTS**
 - User watchlists
 - Favorite movies & series
 - Recommendation history
@@ -162,57 +167,56 @@ The bot fetches metadata from TMDB, processes the data, stores it in a PostgreSQ
 - Personalized recommendations
 - Multi-language interface
 
-## **📸  Bot Preview**
+## **📸  BOT PREVIEW**
 ###  **/about**
-
->Displays an overview of the bot, its purpose, and supported features.
 
 ![about](/screenshots/about.png)
 
-### **/help**
+>Displays an overview of the bot, its purpose, and supported features.
 
->Lists all available slash commands grouped by category for quick navigation.
+### **/help**
 
 ![help](/screenshots/help.png)
 
-### **/random-movie**
+>Lists all available slash commands grouped by category for quick navigation.
 
->Returns a randomly selected movie with detailed information including poster, genre, language, release date, and rating(if available).
+### **/random-movie**
 
 ![random-movie](/screenshots/random_movie.png)
 
-### **/movies-genre**
+>Returns a randomly selected movie with detailed information including poster, genre, language, release date, and rating(if available).
 
->Displays movies filtered by a selected genre with a user-defined result count.
+### **/movies-genre**
 
 ![movies-genre](/screenshots/movies_genre.png)
 
-### **/top-rated-movies**
+>Displays movies filtered by a selected genre with a user-defined result count.
 
->Browse the highest-rated movies available in the database using interactive button-based pagination.
+### **/top-rated-movies**
 
 ![top-rated-movies-1](/screenshots/tr_movies1.png)
 
 ![top-rated-movies-2](/screenshots/tr_movies2.png)
 
+>Browse the highest-rated movies available in the database using interactive button-based pagination.
+
 ---
 
-## **🤝  Contributing**
+## **🤝  CONTRIBUTION**
 Suggestions, improvements, and pull requests are always welcome.
 If you find a bug or have an idea for a new feature, feel free to open an issue.
 
 ---
 
-## **📄  License**
-This bot is intended as a portfolio project.
-It is not continuously hosted, but can be run locally after configuring the required environment variables.
+## **📄  LICENSE**
+This bot is intended as a portfolio project and is not continuously hosted.
 
 ---
 
-## **👨‍💻  Author**
+## **👨‍💻  AUTHOR**
 **Subhom Ghosh**
 
-Backend Developer (Python • PostgreSQL • Discord.py)
+Backend Developer (Backend Developer | Python • PostgreSQL • Discord.py)
 
 - GitHub: [View Profile](https://github.com/subhomg10)
 
