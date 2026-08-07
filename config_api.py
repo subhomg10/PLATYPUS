@@ -57,19 +57,6 @@ def create_language_map(response, langSet):
     langSet[data['iso_639_1']] = data['english_name']
   return langSet
 
-# def load_tmdb():
-#   try:
-
-#     fetch_genre(baseUrl, endpointSeries, headers, genreSeries)
-#     fetch_genre(baseUrl, endpointMovies, headers, genreMovies)
-#     fetch_lang(baseUrl, endpointLanguage, headers, language)
-
-#     return genreSeries, genreMovies, language
-
-#   except Exception as error:
-#     print(error)
-#     return {},{},{}
-
 def load_tmdb():
     try:
 
